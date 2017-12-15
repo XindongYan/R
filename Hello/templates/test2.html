@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	
+	<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	
+	<!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+	<style type="text/css">
+		.box {
+			height: 250px;
+			width: 90%;
+			background: #FFFFFF;
+			font-size: 32px;
+			font-weight: bold;
+			line-height: 200px;
+			text-align: center;
+			border-radius: 12px;
+			border: 1px solid #FAFAFA;
+		}
+	</style>
+</head>
+<body style="background: #F5F5F5;">
+	
+	<div id="container"></div>
+	<div id="tip"></div>
+	
+	<nav style="position: relative; z-index: 100; height: 80px; background: #FFFFFF;">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="#">
+	        <img style="color: #8C6DD5; font-size: 35px; font-weight: bold; line-height: 80px;" alt="v0.5_eng1    内部工程版" src="...">
+	      </a>
+	    </div>
+	  </div>
+	</nav>
+	
+	<br />
+	<br />
+	{% for item in address %}
+		<!--<a href="route" name="route" methods="post" id="route" class="box">{{ item }}</a>-->
+		<div style="width: 100%; text-align: center;">
+			<form action="/route" method="post">
+				{% csrf_token %}
+				<input type="text" name="route" value="{{ item }}" style="display: none;" />
+				<input type="submit" class="box" value="{{ item }}"/>
+			</form>
+		</div>
+		<!--<input type="button" name="btn" id="btn" value="submit" />-->
+		<br />
+		<br />
+		<br />
+	{% endfor %}
+	
+	<script type="text/javascript">
+		var address = {{ address|safe }};	
+	</script>
+	
+	
+	
+</body>
+</html>
